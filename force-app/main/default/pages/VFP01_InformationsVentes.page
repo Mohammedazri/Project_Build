@@ -1,0 +1,34 @@
+<apex:page controller="Client_Controleur" sidebar="false" >
+                <apex:form >
+                <!-- variable for Sum of appart -->
+                <apex:variable value="{!0.00}" var="Sum"/>
+                <apex:pageBlock title="Informations de Ventes">
+                     <apex:pageBlockTable var="c" value="{!Clients}" >
+                        <!-- <apex:column value="{!c.Nom__c}" /> -->
+                        <apex:column headerValue="Nom">
+                        <apex:outputLink value="{!URLFOR($Action.Client__c.View, c.Id)}" target="_blank">
+                        <apex:outputField value="{!c.Nom__c}" />
+                        </apex:outputLink>
+                        </apex:column>
+                        <apex:column value="{!c.Prenom__c}" />
+                        <apex:column value="{!c.Numero_d_appartement_Achete__c}" />
+                        <apex:column value="{!c.Date_d_achat__c}" />
+                        <apex:column value="{!c.Batiment__c}" />
+                        <apex:column headerValue="Somme payée">
+                        <apex:outputField value="{!c.Somme_pay_e__c}" />
+                        <apex:variable var="Sum" value="{!Sum + c.Somme_pay_e__c}" />
+                        <!-- Footer of the first Cell -->
+                        <apex:facet name="footer">
+                            Somme: <span class="t1"></span>
+                        </apex:facet>
+                        </apex:column>
+
+                     </apex:pageBlockTable>
+                </apex:pageBlock>
+                <script>
+                  // Here we will set the generated subtotals to the footer cells
+                  document.getElementsByClassName('t1')[0].innerHTML = '{!Sum} €';
+              </script>
+            </apex:form>
+      
+</apex:page>
