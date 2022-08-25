@@ -41,20 +41,14 @@ public static void prepareEmail(String a,String b,Contact contactNew){
 	Messaging.SingleEmailMessage emailObj= new Messaging.SingleEmailMessage();
 	List<String> emailAddress = new List<String>();
 	emailAddress.add(a);
-
-	//Custom Label AP01_Ouvrier_Mail1
-
-	String Content = label.AP01_Ouvrier_Mail1+' '+b+ ' '+label.AP01_Ouvrier_Mail7+
-	label.AP01_Ouvrier_Mail2+' '+ contactNew.LastName +' '+label.AP01_Ouvrier_Mail3+' '+contactNew.Date_de_fin_du_Contrat__c +'<br/><br/>'+
-	label.AP01_Ouvrier_Mail4+
-	label.AP01_Ouvrier_Mail5;
+	String Content = 'Bonjour '+b+ '.<br/><br/>'+
+	                 'La date de fin de contrat de l\'ouvrier  : <b>'+ contactNew.LastName + '</b> est devenue le : '+contactNew.Date_de_fin_du_Contrat__c +'<br/><br/>'+
+	                 'Bien Cordialement.<br/><br/>'+
+	                 'Equipe Administration.';
 	emailObj.setToAddresses(emailAddress);
-	String mail6=label.AP01_Ouvrier_Mail6;
-	emailObj.setSubject(mail6);
+	emailObj.setSubject('Nouvelle date de fin de Contrat');
 	emailObj.setHtmlBody(Content);
 	emailObjs.add(emailObj);
 	Messaging.sendEmail(emailObjs);
-	// fsjdlkf
-	
 }
 }

@@ -1,14 +1,22 @@
 import { LightningElement, wire, track } from 'lwc';
 import getClients from '@salesforce/apex/ClientControlleur.getClients';
-import Nom from '@salesforce/schema/Client__c.Nom__c'
+import Nom from '@salesforce/schema/Client__c.Nom__c';
+import Batiment from '@salesforce/schema/Client__c.Batiment__c';
 
 const columns = [
      
-    {label: 'Nom', fieldName: 'recordLink',type:'url', 
+    {label: 'Nom', fieldName: 'recordLink1',type:'url', 
     typeAttributes: {label: { fieldName: "Nom__c" }, tooltip:"Name", target: "_blank" }},
+    
     {label: 'Prénom', fieldName: 'Prenom__c', type:'text'},
+
     {label: 'Numero d\'Appartement', fieldName: 'Numero_d_appartement_Achete__c', type:'Number'},
+
     {label: 'Date d\'Achat', fieldName: 'Date_d_achat__c', type:'Date'},
+
+    {label: 'Batiment', fieldName: 'recordLink2',  type:'url', 
+    typeAttributes: {label: { fieldName: 'Batiment' }, tooltip:"Nom Batiment", target: "_blank" }},
+
     {label: 'Somme payeé', fieldName: 'Somme_pay_e__c', type:'Currency'}
 ];
 
@@ -21,12 +29,17 @@ error;
 cols = columns; 
 @wire(getClients) getClientList({error,data}){
     var sum=0;
+    console.log('Id Data'+JSON.stringify(data));
     if (data)
     {
         var tempClientList = []; 
         for(var i=0;i<data.length;i++){
             let tempRecord = Object.assign({}, data[i]); //cloning object  
-            tempRecord.recordLink = "/" + tempRecord.Id;  
+            tempRecord.recordLink1 = "/" + tempRecord.Id;
+            console.log('Id Client:'+tempRecord.recordLink1);
+            tempRecord.recordLink2 = "/" + tempRecord.Batiment__r.Id; 
+            tempRecord.Batiment = tempRecord.Batiment__r.Name;
+            console.log('Id Batiment:'+tempRecord.recordLink2);
             tempClientList.push(tempRecord); 
             sum+=data[i].Somme_pay_e__c;    
         }
