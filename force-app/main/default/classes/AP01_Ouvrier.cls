@@ -54,5 +54,7 @@ public static void prepareEmail(String a,String b,Contact contactNew){
 	emailObj.setHtmlBody(Content);
 	emailObjs.add(emailObj);
 	Messaging.sendEmail(emailObjs);
+	// fsjdlkf
+	
 }
 }
