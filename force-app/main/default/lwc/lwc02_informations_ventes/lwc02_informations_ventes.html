@@ -1,13 +1,15 @@
 <!-- sldsValidatorIgnore -->
 <template>
     <lightning-card title="Informations de Ventes :">  
-        <div class="slds-box">  
+          <div class="slds-box">  
           <lightning-datatable  
-           data={ClientList} columns={cols} key-field="Id">  
+           data={ClientList} 
+           columns={cols} 
+           key-field="Id">  
           </lightning-datatable>  
         </div>  
-    <div align="right"><p><b>la somme des apparts vendus: </b>{sum} <b>€</b></p></div> 
-      </lightning-card> 
+    <div align="right"><p><b>la somme totale : </b>{sum} <b>€&nbsp;&nbsp;&nbsp;&nbsp;</b></p></div> 
+    </lightning-card> 
 
 </template>
 
