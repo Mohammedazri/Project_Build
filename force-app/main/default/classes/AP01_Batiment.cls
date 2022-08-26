@@ -3,35 +3,28 @@ public static void attacherIngenieur(List <Batiment__c> bat)  {
 	System.debug('List'+bat);
 	//Construire une liste de batiments sans ingénieurs
 	List<Batiment__c> BatToUpdate = new List<Batiment__c>();
+	//Construire une liste d'Ingénieurs
 	List<Account>  IngenieurToCreate = new List<Account>();
+	//Construire une Map des Ingénieurs à Update
 	Map<Id,Account> batToIngenieurMap = new Map<Id,Account>();
 
+	//Pour préciser l'accés RecordType de type : Personnel dans Account
 	Id acc1r = Schema.SObjectType.Account.getRecordTypeInfosByDeveloperName().get('Personnel').getRecordTypeId();
 
-
-	// List<Batiment__c> bats = [Select nom__c from Batiment__c where Account__c=null];
-	for(Batiment__c bati:bat )
+	//Parcourir la liste des batiments pour faire l'insertion de Account if Null
+	for(Batiment__c bati:bat)
 	{
 		if(bati.Account__c == null)
 		{
-
 			Account ing = new Account(Name = 'Ingénieur: '+bati.Name );
-			//try{
-				ing.RecordTypeId= acc1r;
-				IngenieurToCreate.add(ing);
-				System.debug('Voici votre message:'+ing);
-				BatToUpdate.add(new Batiment__c (Id=bati.Id));
-				batToIngenieurMap.put(bati.Id, ing);
-				//Database.SaveResult SR = Database.update(bati, false);
-			//}
-			// catch (Exception exp) {
-			// 	throw new BatimentException(exp);
-
-			// }
-
+			ing.RecordTypeId= acc1r;
+			IngenieurToCreate.add(ing);
+			System.debug('Voici votre message:'+ing);
+			BatToUpdate.add(new Batiment__c (Id=bati.Id));
+			batToIngenieurMap.put(bati.Id, ing);
 		}
 
-
+        // Bulck
 		if (IngenieurToCreate.size()>0) {
 			Try {
 				Insert IngenieurToCreate;

@@ -1,6 +1,6 @@
 @isTest
 public class AP01_Ouvrier_Test {
-
+//Préparation des données pour le test
 @TestSetup
 static void setupData(){
 	List<Contact> testContacts = Test_Utils.loadContacts();

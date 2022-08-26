@@ -1,13 +1,15 @@
+//Import des données à utiliser
 import { LightningElement, wire, track } from 'lwc';
 import getClients from '@salesforce/apex/ClientControlleur.getClients';
 import Nom from '@salesforce/schema/Client__c.Nom__c';
 import Batiment from '@salesforce/schema/Client__c.Batiment__c';
 
+//COnstruction des colonnes du tableau
 const columns = [
-     
+    
     {label: 'Nom', fieldName: 'recordLink1',type:'url', 
     typeAttributes: {label: { fieldName: "Nom__c" }, tooltip:"Name", target: "_blank" }},
-    
+        
     {label: 'Prénom', fieldName: 'Prenom__c', type:'text'},
 
     {label: 'Numero d\'Appartement', fieldName: 'Numero_d_appartement_Achete__c', type:'Number'},
@@ -20,12 +22,13 @@ const columns = [
     {label: 'Somme payeé', fieldName: 'Somme_pay_e__c', type:'Currency'}
 ];
 
+//Les données à retourner pour l'affichage dans le tableau
 export default class Lwc02_informations_ventes extends LightningElement{
     
 error;
+//Création de la liste de clients à afficher(Dynamique) avec la gestion des erreurs
 @track ClientList = []; 
-    
-   
+      
 cols = columns; 
 @wire(getClients) getClientList({error,data}){
     var sum=0;
@@ -52,9 +55,6 @@ cols = columns;
             this.error = error;  
             this.ClientList = undefined;
         }
-
     }
-
 }
-
 }

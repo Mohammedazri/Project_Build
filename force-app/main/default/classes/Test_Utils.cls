@@ -9,7 +9,7 @@ public static List<Contact> createContacts() {
     //Contact 1 Date==Null
 	Contact contactWithoutDate = new Contact(
 		FirstName='Test', LastName=' Sam'
-		                            //Date_de_fin_du_Contrat__c=null
+		//Date_de_fin_du_Contrat__c=null
 		);
 	Contacts.add(contactWithoutDate);
 
@@ -43,7 +43,7 @@ public static List<Account> loadIngenieurs() {
 	return initialAccount;
 }
 
-// We lood Batiment__c
+//We generate a list of Batiment 
 public static List<Batiment__c> loadsBats() {
 	List<Batiment__c> initialBat = new List<Batiment__c>();
 	Batiment__c myBat = new Batiment__c(Name='Batiment1', Village__c='a007Q000009fbqCQAQ', Account__c=null);
@@ -52,6 +52,7 @@ public static List<Batiment__c> loadsBats() {
 	return initialBat;
 }
 
+//We generate a list of User 
 public static List<User> loadUsers() {
 	List<User> initialUser = new List<User>();
 	Profile p = [SELECT Id FROM Profile WHERE Name='System Administrator']; 
@@ -64,6 +65,7 @@ public static List<User> loadUsers() {
 	return initialUser;
 }
 
+//We generate a list of Contact 
 public static List<Contact> loadContacts() {
 	List<Contact> initialContact = new List<Contact>();
 	Contact MyContact = new Contact(FirstName='Testw', LastName=' Samw', OwnerId='0057Q000006iuiPQAQ',
@@ -75,6 +77,7 @@ public static List<Contact> loadContacts() {
 	return initialContact;
 }
 
+//We generate a list of Client__c 
 public static List<Client__c> loadClients(){
 	List<Client__c> initialClients = new List<Client__c>();
 	Client__c MyClient = new Client__c(Nom__c='Ali',Prenom__c='Sam', Numero_d_appartement_Achete__c=37,
@@ -82,7 +85,8 @@ public static List<Client__c> loadClients(){
 	insert MyClient;
 	return initialClients;
 }
-//We generate a list of Batimment__c Without Ingenieur
+
+//We generate a list of Bâtiment__c Without Engenier
 public static List<Batiment__c> createBatimentsWithoutIngenieur() {
 	List<Batiment__c> Batiments = new List<Batiment__c>();
 	Batiment__c BatimentwithountIngenieur = new Batiment__c(Name='Batiment1', Village__c='a007Q000009fbqCQAQ', Account__c=null);
@@ -91,7 +95,7 @@ public static List<Batiment__c> createBatimentsWithoutIngenieur() {
 }
 
 
-//We generate a list of Batimment__c With Ingenieur 
+//We generate a list of Bâtiment__c With Engenier 
 public static List<Batiment__c> createBatimentsWithIngenieur() {
 
 	List<Batiment__c> Batiments = new List<Batiment__c>();

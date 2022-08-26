@@ -3,8 +3,8 @@
                 <!-- variable for Sum of appart -->
                 <apex:variable value="{!0.00}" var="Sum"/>
                 <apex:pageBlock title="Informations de Ventes">
+                     <!-- Création du tableau et assegnation de la list des clients -->
                      <apex:pageBlockTable var="c" value="{!Clients}" >
-                        <!-- <apex:column value="{!c.Nom__c}" /> -->
                         <apex:column headerValue="Nom">
                         <apex:outputLink value="{!URLFOR($Action.Client__c.View, c.Id)}" target="_blank">
                         <apex:outputField value="{!c.Nom__c}" />
@@ -17,7 +17,7 @@
                         <apex:column headerValue="Somme payée">
                         <apex:outputField value="{!c.Somme_pay_e__c}" />
                         <apex:variable var="Sum" value="{!Sum + c.Somme_pay_e__c}" />
-                        <!-- Footer of the first Cell -->
+                        <!-- Footer pour la somme des apparts vendus-->
                         <apex:facet name="footer">
                             Somme: <span class="t1"></span>
                         </apex:facet>
@@ -30,5 +30,5 @@
                   document.getElementsByClassName('t1')[0].innerHTML = '{!Sum} €';
               </script>
             </apex:form>
-      
+     
 </apex:page>
