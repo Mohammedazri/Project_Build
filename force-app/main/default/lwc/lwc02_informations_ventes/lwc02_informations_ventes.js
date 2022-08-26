@@ -52,6 +52,9 @@ cols = columns;
             this.error = error;  
             this.ClientList = undefined;
         }
+
     }
+
 }
+
 }
